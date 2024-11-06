@@ -3,7 +3,7 @@ import React from "react"
 export default function Header ({ fetchPictures, loading, pictureContents }) {
     return (
         <header>
-        <h1>Chicago Institute of Art</h1>
+        <h1>Art Through the Ages</h1>
         {!loading && !pictureContents && (
           <button
             disabled={loading}

@@ -50,7 +50,7 @@ export default function Home() {
                 <img src={imageUrl} alt={picture.title} />
                 <h2>{picture.title}</h2>
                 <p>{artistName}</p>
-                <hr />
+                
               </article>
             );
           })}
