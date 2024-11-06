@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Header from "./components/molecules/Header";
 import './styles/styles.css';
+import PictureDisplay from "./components/organisms/PictureDisplay";
 
 export default function Home() {
   const [pictureContents, setPictureContents] = useState(null);
@@ -21,7 +22,7 @@ export default function Home() {
         throw new Error("Network response is bad");
       }
       const data = await response.json();
-      setPictureContents(data.data); 
+      setPictureContents(data.data);
     } catch (error) {
       setError("Failed to load artwork. Better luck next time.");
     } finally {
@@ -29,39 +30,10 @@ export default function Home() {
     }
   }
 
-
-  const PictureDisplay = () => {
-    if (loading) {
-      return <section style={{ fontSize: '30px', color: 'black', textAlign: 'right' }}>Loading Artwork...</section>;
-    }
-
-    if (error) {
-      return <section>{error}</section>;
-    }
-
-    if (pictureContents) {
-      return (
-        <section>
-          {pictureContents.map((picture, i) => {
-            const imageUrl = `https://www.artic.edu/iiif/2/${picture.image_id}/full/843,/0/default.jpg`;
-            const artistName = picture.artist_title ? picture.artist_title : "Unknown Artist";
-            return (
-              <article key={i}>
-                <img src={imageUrl} alt={picture.title} />
-                <h2>{picture.title}</h2>
-                <p>{artistName}</p>
-                <hr />
-              </article>
-            );
-          })}
-        </section>
-      );
-    }
-  };
   return (
     <div className="m-8">
-      <Header fetchPictures={fetchPictures} loading={loading} pictureContents={pictureContents}/>
-      <PictureDisplay />
+      <Header fetchPictures={fetchPictures} loading={loading} pictureContents={pictureContents} />
+      <PictureDisplay loading={loading} error={error} pictureContents={pictureContents} />
     </div>
   );
 }
