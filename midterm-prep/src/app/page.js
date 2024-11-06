@@ -21,7 +21,7 @@ export default function Home() {
         throw new Error("Network response is bad");
       }
       const data = await response.json();
-      setPictureContents(data.data); 
+      setPictureContents(data.data);
     } catch (error) {
       setError("Failed to load artwork. Better luck next time.");
     } finally {
@@ -50,7 +50,7 @@ export default function Home() {
                 <img src={imageUrl} alt={picture.title} />
                 <h2>{picture.title}</h2>
                 <p>{artistName}</p>
-                
+
               </article>
             );
           })}
@@ -60,7 +60,7 @@ export default function Home() {
   };
   return (
     <div className="m-8">
-      <Header fetchPictures={fetchPictures} loading={loading} pictureContents={pictureContents}/>
+      <Header fetchPictures={fetchPictures} loading={loading} pictureContents={pictureContents} />
       <PictureDisplay />
     </div>
   );
